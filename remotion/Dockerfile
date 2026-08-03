@@ -1,0 +1,8 @@
+FROM node:20-bullseye
+WORKDIR /app
+RUN apt-get update && apt-get install -y ffmpeg chromium && rm -rf /var/lib/apt/lists/*
+COPY package.json ./
+RUN npm install
+COPY . .
+EXPOSE 3001
+CMD ["npm", "run", "server"]

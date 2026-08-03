@@ -1,0 +1,1 @@
+# ReviewFactory OS v2.0\nFactory Full Stack\n\n`docker compose up --build`

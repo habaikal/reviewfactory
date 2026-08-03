@@ -1,0 +1,15 @@
+{
+  "name": "rf-remotion-renderer",
+  "version": "2.0.0",
+  "dependencies": {
+    "@remotion/bundler": "^4.0.150",
+    "@remotion/cli": "^4.0.150",
+    "@remotion/renderer": "^4.0.150",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "remotion": "^4.0.150"
+  },
+  "scripts": {
+    "server": "node server.js"
+  }
+}

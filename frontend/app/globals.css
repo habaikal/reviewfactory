@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #040509;
+  color: #eef1ff;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(139, 79, 255, 0.35);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #070912;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7229f0, #12d6e8);
+  border-radius: 999px;
+  border: 2px solid #070912;
+}
+
+@layer components {
+  .glass-panel {
+    @apply relative rounded-2xl border border-white/10 bg-white/[0.035] backdrop-blur-xl;
+    box-shadow: 0 8px 32px rgba(2, 4, 15, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .glass-panel-solid {
+    @apply relative rounded-2xl border border-white/10 bg-void-850/80 backdrop-blur-xl;
+    box-shadow: 0 8px 32px rgba(2, 4, 15, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .text-gradient {
+    @apply bg-aurora-text bg-clip-text text-transparent;
+  }
+
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 via-violet-500 to-magenta-500 px-6 py-3 text-sm font-semibold text-white shadow-glow-violet transition-all duration-300 hover:scale-[1.03] hover:shadow-glow-cyan active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-6 py-3 text-sm font-medium text-white/85 backdrop-blur-md transition-all duration-300 hover:border-white/30 hover:bg-white/[0.08];
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-medium text-white/70;
+  }
+
+  .section-eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/[0.06] px-4 py-1.5 text-xs font-semibold tracking-wider text-cyan-300;
+  }
+
+  .grid-bg {
+    background-image: linear-gradient(to right, rgba(148, 163, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(148, 163, 255, 0.06) 1px, transparent 1px);
+    background-size: 42px 42px;
+  }
+}
+
+@layer utilities {
+  .mask-fade-b {
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  }
+}

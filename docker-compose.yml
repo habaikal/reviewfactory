@@ -1,0 +1,141 @@
+version: '3.9'
+services:
+  vllm:
+    image: vllm/vllm-openai:latest
+    container_name: rf-vllm
+    runtime: nvidia
+    environment:
+      - HUGGING_FACE_HUB_TOKEN=${HF_TOKEN}
+    command: >
+      --model Qwen/Qwen2.5-32B-Instruct
+      --served-model-name qwen3
+      --dtype auto
+      --max-model-len 8192
+      --gpu-memory-utilization 0.9
+      --quantization fp8
+      --port 8000
+      --api-key ${VLLM_API_KEY:-reviewfactory}
+    ports:
+      - "8001:8000"
+    volumes:
+      - vllm-cache:/root/.cache/huggingface
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      retries: 10
+    restart: unless-stopped
+
+  comfyui:
+    build:
+      context: ./comfyui
+      dockerfile: Dockerfile
+    container_name: rf-comfyui
+    runtime: nvidia
+    ports:
+      - "8188:8188"
+    volumes:
+      - ./comfyui/models:/app/ComfyUI/models
+      - ./comfyui/custom_nodes:/app/ComfyUI/custom_nodes
+      - ./comfyui/input:/app/ComfyUI/input
+      - ./comfyui/output:/app/ComfyUI/output
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-rf}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-rfpass123}
+      POSTGRES_DB: ${POSTGRES_DB:-reviewfactory}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./backend/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
+
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_USER:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_PASSWORD:-minioadmin123}
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio-data:/data
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - vllm
+      - comfyui
+      - redis
+      - postgres
+      - minio
+    environment:
+      - VLLM_API_URL=http://vllm:8000/v1
+      - VLLM_API_KEY=${VLLM_API_KEY:-reviewfactory}
+      - COMFYUI_URL=http://comfyui:8188
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-rf}:${POSTGRES_PASSWORD:-rfpass123}@postgres:5432/${POSTGRES_DB:-reviewfactory}
+      - S3_ENDPOINT=http://minio:9000
+      - S3_ACCESS_KEY=${MINIO_USER:-minioadmin}
+      - S3_SECRET_KEY=${MINIO_PASSWORD:-minioadmin123}
+      - S3_BUCKET=reviewfactory
+    volumes:
+      - ./backend:/app
+    restart: unless-stopped
+
+  remotion:
+    build:
+      context: ./remotion
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - S3_ENDPOINT=http://minio:9000
+    volumes:
+      - ./remotion:/app
+      - remotion-output:/app/out
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    restart: unless-stopped
+
+volumes:
+  vllm-cache:
+  redis-data:
+  postgres-data:
+  minio-data:
+  remotion-output:

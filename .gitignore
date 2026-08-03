@@ -1,0 +1,11 @@
+# Env
+.env
+.env.prod
+.env.local
+# Models
+comfyui/models/
+*.safetensors
+node_modules/
+.next/
+__pycache__/
+.DS_Store

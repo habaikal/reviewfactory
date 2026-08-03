@@ -1,0 +1,22 @@
+
+[project]
+name = "reviewfactory-v2"
+[template]
+name = "ReviewFactory Factory Full Stack"
+[template.container]
+diskInGb = 80
+gpu = "NVIDIA A100 40GB"
+gpuCount = 1
+vcpuCount = 8
+memoryInGb = 32
+image = "reviewfactory/all-in-one:v2.0"
+[template.ports]
+"8000/http" = 8000
+"8188/http" = 8188
+"3000/http" = 3000
+"8001/http" = 8001
+"3001/http" = 3001
+[template.env]
+HF_TOKEN = ""
+VLLM_API_KEY = "reviewfactory"
+R2_BUCKET = "reviewfactory-prod"

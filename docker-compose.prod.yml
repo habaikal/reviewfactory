@@ -1,0 +1,122 @@
+
+version: '3.9'
+services:
+  vllm:
+    image: vllm/vllm-openai:latest
+    container_name: rf-vllm-prod
+    runtime: nvidia
+    environment:
+      - HUGGING_FACE_HUB_TOKEN=${HF_TOKEN}
+    command: >
+      --model Qwen/Qwen2.5-32B-Instruct
+      --served-model-name qwen3
+      --dtype auto
+      --max-model-len 12288
+      --gpu-memory-utilization 0.92
+      --quantization fp8
+      --enable-prefix-caching
+      --max-num-seqs 32
+      --port 8000
+      --api-key ${VLLM_API_KEY}
+    volumes:
+      - vllm-cache-prod:/root/.cache/huggingface
+      - /mnt/runpod-volume/models:/root/.cache/huggingface/hub:ro
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
+
+  comfyui:
+    build:
+      context: ./comfyui
+      dockerfile: Dockerfile
+    container_name: rf-comfyui-prod
+    runtime: nvidia
+    volumes:
+      - /mnt/runpod-volume/models:/app/ComfyUI/models:ro
+      - comfyui-output-prod:/app/ComfyUI/output
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --maxmemory 512mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis-data-prod:/data
+    restart: unless-stopped
+
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres-data-prod:/var/lib/postgresql/data
+      - ./backend/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - vllm
+      - redis
+      - postgres
+    environment:
+      - ENV=production
+      - VLLM_API_URL=http://vllm:8000/v1
+      - VLLM_API_KEY=${VLLM_API_KEY}
+      - COMFYUI_URL=http://comfyui:8188
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      - S3_ENDPOINT=${R2_ENDPOINT}
+      - S3_ACCESS_KEY=${R2_ACCESS_KEY_ID}
+      - S3_SECRET_KEY=${R2_SECRET_ACCESS_KEY}
+      - S3_BUCKET=${R2_BUCKET}
+      - S3_REGION=auto
+      - S3_PUBLIC_URL=https://${R2_PUBLIC_DOMAIN}/
+    restart: unless-stopped
+
+  remotion:
+    build:
+      context: ./remotion
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
+    environment:
+      - NODE_ENV=production
+      - S3_ENDPOINT=${R2_ENDPOINT}
+      - S3_ACCESS_KEY=${R2_ACCESS_KEY_ID}
+      - S3_SECRET_KEY=${R2_SECRET_ACCESS_KEY}
+      - S3_BUCKET=${R2_BUCKET}
+    volumes:
+      - ./remotion:/app
+      - remotion-output-prod:/app/out
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+      - NEXT_PUBLIC_S3_URL=https://${R2_PUBLIC_DOMAIN}
+    restart: unless-stopped
+
+volumes:
+  vllm-cache-prod:
+  comfyui-output-prod:
+  redis-data-prod:
+  postgres-data-prod:
+  remotion-output-prod:
