@@ -11,7 +11,7 @@ const nextConfig = {
     ],
   },
   output: 'export',
-  basePath: isProd ? '/omnicast' : undefined,
+  basePath: isProd ? '/reviewfactory' : undefined,
   experimental: {
     webpackBuildWorker: false,
     workerThreads: false,
