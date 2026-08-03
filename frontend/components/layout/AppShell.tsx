@@ -39,7 +39,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <Orbit className="text-white" size={17} strokeWidth={2.5} />
         </span>
         <span className="font-display text-base font-bold text-white">
-          OMNICAST <span className="text-gradient">AI</span>
+          ReviewFactory <span className="text-gradient">AI</span>
         </span>
       </Link>
 
@@ -110,7 +110,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 via-violet-500 to-magenta-500">
                 <Orbit className="text-white" size={14} />
               </span>
-              <span className="font-display text-sm font-bold text-white">OMNICAST AI</span>
+              <span className="font-display text-sm font-bold text-white">ReviewFactory OS</span>
             </Link>
             <button
               onClick={() => setMobileOpen(true)}

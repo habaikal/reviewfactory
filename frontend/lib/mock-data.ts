@@ -1,4 +1,4 @@
-// OMNICAST AI — 데모용 목업 데이터 (실제 백엔드/AI 연동 없이 UI 시연용)
+// ReviewFactory OS — 데모용 목업 데이터 (실제 백엔드/AI 연동 없이 UI 시연용)
 
 export const pipelineStages = [
   {
@@ -40,7 +40,7 @@ export const killerFeatures = [
     icon: 'Sparkles',
     title: 'Zero-Editing 생성 엔진',
     desc: "목적(예: '인스타 신상품 홍보')과 로고·제품 사진만 넣으면 기획부터 렌더링까지 100% 무인화로 완성됩니다.",
-    tag: 'OMNICAST Core',
+    tag: 'ReviewFactory Core',
   },
   {
     icon: 'Layers3',
@@ -58,7 +58,7 @@ export const killerFeatures = [
     icon: 'AudioLines',
     title: '오디오-비주얼 인텔리전스',
     desc: 'BGM의 드롭 구간을 컷 전환 타이밍에 정밀 매칭하고, 공간을 인식해 지나가는 사물 뒤로 자막이 자연스럽게 숨는 딥컴포지팅.',
-    tag: 'OMNICAST Studio',
+    tag: 'ReviewFactory Studio',
   },
   {
     icon: 'Recycle',
@@ -282,13 +282,13 @@ export const libraryAssets = [
 export const assetLicenses: import('./types').AssetLicense[] = [
   { assetId: 'a1', assetKind: 'video', sourceName: 'Pexels', licenseType: 'Pexels License (무료 상업적 이용)', author: 'Taryn Elliott', sourceUrl: 'https://www.pexels.com/ko-kr/', attributionRequired: false, commercialUseAllowed: true, risk: 'safe' },
   { assetId: 'a2', assetKind: 'video', sourceName: 'Pixabay', licenseType: 'Pixabay License (출처 표기 권장)', author: 'Community Creator', sourceUrl: 'https://pixabay.com/', attributionRequired: false, commercialUseAllowed: true, risk: 'safe' },
-  { assetId: 'a3', assetKind: 'video', sourceName: 'OMNICAST 생성 자산', licenseType: 'AI 생성물 — 플랫폼 라이선스 귀속', author: 'Stable Video Diffusion', sourceUrl: '#', attributionRequired: false, commercialUseAllowed: true, risk: 'safe' },
+  { assetId: 'a3', assetKind: 'video', sourceName: 'ReviewFactory 생성 자산', licenseType: 'AI 생성물 — 플랫폼 라이선스 귀속', author: 'Stable Video Diffusion', sourceUrl: '#', attributionRequired: false, commercialUseAllowed: true, risk: 'safe' },
   { assetId: 'a4', assetKind: 'video', sourceName: 'Pexels', licenseType: 'Pexels License (무료 상업적 이용)', author: 'Kelly Lacy', sourceUrl: 'https://www.pexels.com/ko-kr/', attributionRequired: false, commercialUseAllowed: true, risk: 'safe' },
   { assetId: 'a5', assetKind: 'video', sourceName: '사용자 업로드', licenseType: '원본 소유권 확인 필요', author: '사용자 계정', sourceUrl: '#', attributionRequired: false, commercialUseAllowed: true, risk: 'caution' },
   { assetId: 'a6', assetKind: 'video', sourceName: 'Pixabay', licenseType: 'Pixabay License (출처 표기 권장)', author: 'Community Creator', sourceUrl: 'https://pixabay.com/', attributionRequired: false, commercialUseAllowed: true, risk: 'safe' },
-  { assetId: 'a7', assetKind: 'video', sourceName: 'OMNICAST 생성 자산', licenseType: 'AI 생성물 — 플랫폼 라이선스 귀속', author: 'Runway Gen-3', sourceUrl: '#', attributionRequired: false, commercialUseAllowed: true, risk: 'safe' },
+  { assetId: 'a7', assetKind: 'video', sourceName: 'ReviewFactory 생성 자산', licenseType: 'AI 생성물 — 플랫폼 라이선스 귀속', author: 'Runway Gen-3', sourceUrl: '#', attributionRequired: false, commercialUseAllowed: true, risk: 'safe' },
   { assetId: 'a8', assetKind: 'video', sourceName: '사용자 업로드', licenseType: '원본 소유권 확인 필요', author: '사용자 계정', sourceUrl: '#', attributionRequired: false, commercialUseAllowed: true, risk: 'caution' },
-  { assetId: 'bgm1', assetKind: 'audio', sourceName: 'OMNICAST 로열티프리 라이브러리', licenseType: 'Royalty-Free (전 세계 상업적 이용)', author: 'Synthwave Drive', sourceUrl: '#', attributionRequired: false, commercialUseAllowed: true, risk: 'safe' },
+  { assetId: 'bgm1', assetKind: 'audio', sourceName: 'ReviewFactory 로열티프리 라이브러리', licenseType: 'Royalty-Free (전 세계 상업적 이용)', author: 'Synthwave Drive', sourceUrl: '#', attributionRequired: false, commercialUseAllowed: true, risk: 'safe' },
   { assetId: 'bgm2', assetKind: 'audio', sourceName: '외부 스트리밍 음원 (미검증)', licenseType: '저작권 등록곡 — 상업적 이용 시 라이선스 필요', author: 'Unknown Label', sourceUrl: '#', attributionRequired: true, commercialUseAllowed: false, risk: 'blocked' },
   { assetId: 'voice1', assetKind: 'voice', sourceName: 'Edge TTS', licenseType: 'Microsoft 무료 사용 정책', author: 'Neural Voice — Sun-Hi', sourceUrl: '#', attributionRequired: false, commercialUseAllowed: true, risk: 'safe' },
   { assetId: 'voice2', assetKind: 'voice', sourceName: 'Supertonic (오픈소스)', licenseType: 'Apache 2.0', author: 'Neural Voice — Local', sourceUrl: '#', attributionRequired: false, commercialUseAllowed: true, risk: 'safe' },

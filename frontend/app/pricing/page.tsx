@@ -75,7 +75,7 @@ export default function PricingPage() {
               <div>
                 <h3 className="font-display text-xl font-bold text-white">엔터프라이즈 화이트라벨</h3>
                 <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/55">
-                  대형 광고 대행사나 쇼핑몰 플랫폼이 OMNICAST의 엔진을 자사 솔루션처럼 사용할 수 있도록 API/SDK와
+                  대형 광고 대행사나 쇼핑몰 플랫폼이 ReviewFactory의 엔진을 자사 솔루션처럼 사용할 수 있도록 API/SDK와
                   커스텀 대시보드를 제공합니다. 전용 GPU 렌더 파티션과 99.9% SLA를 보장합니다.
                 </p>
               </div>

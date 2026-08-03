@@ -53,9 +53,9 @@ export async function generateThumbnailDataUrl(opts: { imageUrl: string; title: 
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
 
-  // OMNICAST AI 배지
+  // ReviewFactory OS 배지
   ctx.font = `700 34px ${KOREAN_FONT_STACK}`;
-  const badgeText = 'OMNICAST AI';
+  const badgeText = 'ReviewFactory OS';
   const badgeTextWidth = ctx.measureText(badgeText).width;
   const badgePadX = 26;
   const badgeW = badgeTextWidth + badgePadX * 2 + 30;

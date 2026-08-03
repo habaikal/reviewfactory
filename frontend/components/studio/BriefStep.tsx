@@ -49,7 +49,7 @@ export function BriefStep({
   const [purpose, setPurpose] = useState('제품 홍보');
   const [tone, setTone] = useState('시네마틱');
   const [selectedPlatforms, setSelectedPlatforms] = useState<string[]>(['reels', 'shorts']);
-  const [assets, setAssets] = useState<string[]>(['logo_omnicast.png', 'product_hero_01.jpg']);
+  const [assets, setAssets] = useState<string[]>(['logo_reviewfactory.png', 'product_hero_01.jpg']);
   const [brief, setBrief] = useState('여름 신상 스니커즈 라인 런칭. 도심 속 액티브한 라이프스타일 강조, 타겟은 20대 초중반.');
 
   const togglePlatform = (id: string) =>

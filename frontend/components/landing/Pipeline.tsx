@@ -34,7 +34,7 @@ export function Pipeline() {
               생성부터 배포까지, <span className="text-gradient">끊김 없는 4단계</span> 파이프라인
             </>
           }
-          desc="OMNICAST의 기획·생성 엔진과 FlowCut의 후반작업 엔진을 하나의 워크플로우로 통합했습니다. 처음부터 만들거나, 이미 촬영한 원본을 업로드하거나 — 결과는 동일하게 완성됩니다."
+          desc="ReviewFactory의 기획·생성 엔진과 FlowCut의 후반작업 엔진을 하나의 워크플로우로 통합했습니다. 처음부터 만들거나, 이미 촬영한 원본을 업로드하거나 — 결과는 동일하게 완성됩니다."
         />
 
         <div className="relative mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">

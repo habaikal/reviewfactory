@@ -42,7 +42,7 @@ export function Footer() {
                 <Orbit className="text-white" size={18} strokeWidth={2.5} />
               </span>
               <span className="font-display text-lg font-bold text-white">
-                OMNICAST <span className="text-gradient">AI</span>
+                ReviewFactory <span className="text-gradient">AI</span>
               </span>
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/50">
@@ -78,7 +78,7 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/40 sm:flex-row">
-          <p>&copy; 2026 OMNICAST AI. All rights reserved. — 버추얼 스튜디오 플랫폼</p>
+          <p>&copy; 2026 ReviewFactory OS. All rights reserved. — 버추얼 스튜디오 플랫폼</p>
           <div className="flex gap-5">
             <Link href="#" className="hover:text-white/70">이용약관</Link>
             <Link href="#" className="hover:text-white/70">개인정보처리방침</Link>

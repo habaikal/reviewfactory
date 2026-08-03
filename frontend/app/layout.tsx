@@ -24,10 +24,10 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'OMNICAST AI — 초개인화 비디오 자동화 통합 플랫폼',
+  title: 'ReviewFactory OS — 초개인화 비디오 자동화 통합 플랫폼',
   description:
-    '기획부터 생성, 후반작업, 멀티플랫폼 배포까지 100% 무인화. LLM 오케스트레이션과 딥컴포지팅 엔진으로 완성하는 차세대 비디오 자동화 플랫폼, OMNICAST AI.',
-  keywords: ['OMNICAST AI', 'AI 영상 생성', '영상 자동화', 'Zero-Editing', 'AI 비디오 SaaS'],
+    '기획부터 생성, 후반작업, 멀티플랫폼 배포까지 100% 무인화. LLM 오케스트레이션과 딥컴포지팅 엔진으로 완성하는 차세대 비디오 자동화 플랫폼, ReviewFactory OS.',
+  keywords: ['ReviewFactory OS', 'AI 영상 생성', '영상 자동화', 'Zero-Editing', 'AI 비디오 SaaS'],
 };
 
 export const viewport: Viewport = {

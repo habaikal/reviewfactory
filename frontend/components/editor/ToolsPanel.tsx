@@ -52,7 +52,7 @@ function riskIcon(risk: LicenseRisk) {
 
 function buildLicenseReport() {
   const lines = [
-    'OMNICAST AI — 저작권 안전 리포트',
+    'ReviewFactory OS — 저작권 안전 리포트',
     `생성 일시: ${new Date().toLocaleString('ko-KR')}`,
     '',
     ...assetLicenses.map(
@@ -121,7 +121,7 @@ export function ToolsPanel({
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'omnicast-copyright-report.txt';
+    a.download = 'reviewfactory-copyright-report.txt';
     a.click();
     URL.revokeObjectURL(url);
   };

@@ -14,7 +14,7 @@ export function CtaBanner() {
               지금 바로 콘텐츠 팩토리를 가동하세요
             </span>
             <h2 className="mx-auto mt-6 max-w-2xl font-display text-3xl font-bold leading-tight text-white sm:text-4xl">
-              뇌(기획)만 남기고, 나머지 모든 수족은 <span className="text-gradient">OMNICAST AI</span>에게
+              뇌(기획)만 남기고, 나머지 모든 수족은 <span className="text-gradient">ReviewFactory OS</span>에게
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-white/55">
               신용카드 없이 무료로 시작하고, 완성된 결과물만 다운로드할 때 결제하세요.

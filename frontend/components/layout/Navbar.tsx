@@ -26,7 +26,7 @@ export function Navbar() {
               <Orbit className="h-4.5 w-4.5 text-white" size={18} strokeWidth={2.5} />
             </span>
             <span className="font-display text-lg font-bold tracking-tight text-white">
-              OMNICAST <span className="text-gradient">AI</span>
+              ReviewFactory <span className="text-gradient">AI</span>
             </span>
           </Link>
 

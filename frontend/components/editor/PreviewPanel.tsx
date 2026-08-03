@@ -37,7 +37,7 @@ export function PreviewPanel({
   // 재생 구간에 따라 동적으로 자막 스크립트 출력
   let activeCaption = '';
   if (progressPct < 25) {
-    activeCaption = '🎬 OMNICAST AI 자동 편집 시작';
+    activeCaption = '🎬 ReviewFactory OS 자동 편집 시작';
   } else if (progressPct < 55) {
     activeCaption = '⚡ 인공지능 모델 라우팅 실시간 최적화';
   } else if (progressPct < 85) {
