@@ -21,9 +21,9 @@ export function Hero() {
               LLM 오케스트레이션 · 딥컴포지팅 · Zero-Editing
             </span>
 
-            <h1 className="mt-6 font-display text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="mt-6 font-display text-3xl font-bold leading-[1.15] tracking-tight text-white sm:text-4xl lg:text-5xl">
               브리프 한 줄이 <span className="text-gradient">완성된 영상</span>이
-              <br className="hidden sm:block" />
+              <br />
               되는 버추얼 스튜디오
             </h1>
 
